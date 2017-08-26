@@ -15,6 +15,8 @@
 	</parent>
     <!-- Properties -->
 	<properties>
+        <sonar.host.url>http://127.0.0.1:9000</sonar.host.url>
+        <sonar.projectName>movie-swarm</sonar.projectName>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -106,6 +108,12 @@
                         <version>${mysql-connector-version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <!-- sonar:sonar To Run The Analysis -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.0.2</version>
             </plugin>
         </plugins>
 	</build>

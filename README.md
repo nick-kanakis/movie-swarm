@@ -6,6 +6,7 @@
   <li>Thymeleaf</li>
   <li>Lombok</li>
   <li>liquibase</li>
+  <li>SonarQube</li>
 </ul>
 <h2>Project Lombok</h2>
 <ol>
