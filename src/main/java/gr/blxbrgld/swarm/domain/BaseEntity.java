@@ -1,7 +1,6 @@
 package gr.blxbrgld.swarm.domain;
 
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +18,6 @@ public abstract class BaseEntity implements Serializable {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "DATE_UPDATED")
