@@ -3,4 +3,8 @@
         <comment>Movie Table</comment>
         <sqlFile path="/src/main/resources/liquibase/sql/movie.sql" />
     </changeSet>
+    <changeSet author="blxbrgld" id="ddl-2">
+        <comment>Genre Table</comment>
+        <sqlFile path="/src/main/resources/liquibase/sql/genre.sql" />
+    </changeSet>
 </databaseChangeLog>

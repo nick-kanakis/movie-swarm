@@ -1,5 +1,7 @@
 package gr.blxbrgld.swarm.services;
 
+import gr.blxbrgld.swarm.domain.Genre;
+import gr.blxbrgld.swarm.domain.Genres;
 import gr.blxbrgld.swarm.domain.Movie;
 import gr.blxbrgld.swarm.domain.Movies;
 import gr.blxbrgld.swarm.enums.ImageSize;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -52,6 +55,21 @@ public class ExternalDataServiceImpl implements ExternalDataService {
         ResponseEntity<Movie> response = restTemplate.getForEntity(url, Movie.class);
         if(response.getStatusCode().equals(HttpStatus.OK)) {
             return response.getBody();
+        } else {
+            throw new MovieDbException("The API Returned With Status != HttpStatus.OK."); //TODO Better Handling
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Genre> genres() {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = MessageFormat.format("{0}genre/movie/list?api_key={1}", Constants.API_URL, apiKey);
+        ResponseEntity<Genres> response = restTemplate.getForEntity(url, Genres.class);
+        if(response.getStatusCode().equals(HttpStatus.OK)) {
+            return response.getBody().getGenres();
         } else {
             throw new MovieDbException("The API Returned With Status != HttpStatus.OK."); //TODO Better Handling
         }
