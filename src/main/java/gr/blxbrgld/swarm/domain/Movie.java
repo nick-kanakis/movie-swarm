@@ -1,6 +1,8 @@
 package gr.blxbrgld.swarm.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import gr.blxbrgld.swarm.utils.YearDeserializer;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -34,6 +36,11 @@ public class Movie extends BaseEntity {
     @Transient //TODO Persist It
     @JsonProperty("original_title")
     private String originalTitle;
+
+    @Transient //TODO Persist It
+    @JsonProperty("release_date")
+    @JsonDeserialize(using = YearDeserializer.class)
+    private Integer year;
 
     @Transient //TODO Persist It
     private Credits credits;

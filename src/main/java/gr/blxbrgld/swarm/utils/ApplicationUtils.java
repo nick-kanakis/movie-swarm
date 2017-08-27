@@ -1,11 +1,17 @@
 package gr.blxbrgld.swarm.utils;
 
 import gr.blxbrgld.swarm.enums.ImageSize;
+import lombok.extern.slf4j.Slf4j;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * ApplicationUtils Class
  * @author blxbrgld
  */
+@Slf4j
 public class ApplicationUtils {
 
     /**
@@ -20,5 +26,23 @@ public class ApplicationUtils {
             .append(size.getCode())
             .append(path)
             .toString();
+    }
+
+    /**
+     * Extract Year From A Date Represented As String Given The Date And It's Format
+     * @param date The Date To Parse
+     * @param format The Date's Format
+     * @return The Date's Year
+     */
+    public static Integer yearFromDate(String date, String format) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dateFormat.parse(date));
+            return calendar.get(Calendar.YEAR);
+        } catch(ParseException exception) {
+            log.error("Cannot Parse Date [Date = {}, Expected Format = {}].", new Object[] { date, format });
+            return null;
+        }
     }
 }

@@ -12,4 +12,5 @@ public class Constants {
     // Miscellaneous
     public static final String API_URL = "https://api.themoviedb.org/3/";
     public static final String API_IMAGES_URL = "https://image.tmdb.org/t/p/";
+    public static final String RELEASE_DATE_FORMAT = "yyyy-dd-mm";
 }
