@@ -3,6 +3,7 @@
 <ul>
   <li>Spring Boot</li>
   <li>Hibernate</li>
+  <li>RestTemplate</li>
   <li>Thymeleaf</li>
   <li>Lombok</li>
   <li>liquibase</li>
