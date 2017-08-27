@@ -75,22 +75,6 @@ public class AbstractDaoImpl<T extends Object>  implements AbstractDao<T>{
      * {@inheritDoc}
      */
     @Override
-    public T getByTitle(String title) {
-        Method method = ReflectionUtils.findMethod(getDomainClass(), "getTitle");
-        if(method !=null) {
-            Query query = getSession().createQuery("FROM " + getDomainClassName() + " WHERE title=:title");
-            query.setParameter("title", title);
-            return (T) query.uniqueResult();
-        }
-        else {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<T> getAll() {
         return getSession().createQuery("from " + getDomainClassName()).list();
     }
@@ -107,13 +91,11 @@ public class AbstractDaoImpl<T extends Object>  implements AbstractDao<T>{
                 if(id == null || count(id)==0) { //IDs May Be Long or String
                     persist(t);
                     return t;
-                }
-                else {
+                } else {
                     merge(t);
                     return t;
                 }
-            }
-            catch (Exception exception) {
+            } catch (Exception exception) {
                 LOGGER.error("Exception", exception);
             }
         }
@@ -189,8 +171,7 @@ public class AbstractDaoImpl<T extends Object>  implements AbstractDao<T>{
         if(method!=null) {
             try {
                 method.invoke(t, Calendar.getInstance());
-            }
-            catch (Exception exception) {
+            } catch (Exception exception) {
                 LOGGER.error("Exception", exception);
             }
         }

@@ -24,13 +24,6 @@ public interface AbstractDao<T extends Object> {
     T load(Serializable id);
 
     /**
-     * Get An Object By A Given Title
-     * @param title Object's Title
-     * @return Object Or null If The Object Does Not Exist
-     */
-    T getByTitle(String title);
-
-    /**
      * Get All Objects
      * @return List Of Objects
      */
