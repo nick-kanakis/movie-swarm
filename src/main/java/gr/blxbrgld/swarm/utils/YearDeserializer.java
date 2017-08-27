@@ -2,9 +2,9 @@ package gr.blxbrgld.swarm.utils;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 
@@ -16,10 +16,7 @@ public class YearDeserializer extends JsonDeserializer<Integer> {
 
     @Override
     public Integer deserialize(JsonParser parser, DeserializationContext context) throws IOException, JsonProcessingException {
-        if(parser.getCurrentToken().equals(JsonToken.VALUE_STRING)) {
-            return ApplicationUtils.yearFromDate(parser.getText(), Constants.RELEASE_DATE_FORMAT);
-        } else {
-            return null;
-        }
+        JsonNode node = parser.getCodec().readTree(parser);
+        return ApplicationUtils.yearFromDate(node.asText(), Constants.RELEASE_DATE_FORMAT);
     }
 }
