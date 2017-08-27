@@ -11,4 +11,5 @@ public class Constants {
 
     // Miscellaneous
     public static final String API_URL = "https://api.themoviedb.org";
+    public static final String API_IMAGES_URL = "https://image.tmdb.org/t/p/";
 }
