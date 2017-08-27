@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Movie Domain Object
@@ -36,6 +37,9 @@ public class Movie extends BaseEntity {
 
     @Transient //TODO Persist It
     private Credits credits;
+
+    @Transient //TODO Persist It
+    private List<Genre> genres;
 
     @Transient //TODO Persist It
     @JsonProperty("overview")
