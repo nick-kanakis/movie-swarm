@@ -1,5 +1,7 @@
 package gr.blxbrgld.swarm.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import gr.blxbrgld.swarm.jackson.CrewDeserializer;
 import lombok.Data;
 
 import java.util.List;
@@ -12,5 +14,7 @@ import java.util.List;
 public class Credits { //No Need To Extend The Base Entity
 
     private List<Credit> cast;
+
+    @JsonDeserialize(using = CrewDeserializer.class)
     private List<Credit> crew;
 }

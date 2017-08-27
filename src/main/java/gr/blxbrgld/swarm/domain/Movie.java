@@ -2,7 +2,7 @@ package gr.blxbrgld.swarm.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import gr.blxbrgld.swarm.utils.YearDeserializer;
+import gr.blxbrgld.swarm.jackson.YearDeserializer;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
