@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.MessageFormat;
 import java.util.Optional;
 
 /**
@@ -29,9 +30,10 @@ public class ExternalDataServiceImpl implements ExternalDataService {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Movies> search(String query) { //TODO &append_to_response=options
+    public Optional<Movies> search(String query) { //TODO More &append_to_response=options
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Movies> response = restTemplate.getForEntity(Constants.API_URL + "search/movie?query=" + query + "&api_key=" + apiKey, Movies.class);
+        String url = MessageFormat.format("{0}search/movie?query={1}&api_key={2}", Constants.API_URL, query, apiKey);
+        ResponseEntity<Movies> response = restTemplate.getForEntity(url, Movies.class);
         if(response.getStatusCode().equals(HttpStatus.OK)) {
             Movies results = response.getBody();
             return results.getTotalResults()>0 ? Optional.of(results) : Optional.empty();
@@ -46,7 +48,8 @@ public class ExternalDataServiceImpl implements ExternalDataService {
     @Override
     public Movie details(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Movie> response = restTemplate.getForEntity(Constants.API_URL + "movie/" + id + "?api_key=" + apiKey, Movie.class);
+        String url = MessageFormat.format("{0}movie/{1}?append_to_response=credits&api_key={2}", Constants.API_URL, id, apiKey);
+        ResponseEntity<Movie> response = restTemplate.getForEntity(url, Movie.class);
         if(response.getStatusCode().equals(HttpStatus.OK)) {
             return response.getBody();
         } else {

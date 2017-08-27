@@ -35,6 +35,9 @@ public class Movie extends BaseEntity {
     private String originalTitle;
 
     @Transient //TODO Persist It
+    private Credits credits;
+
+    @Transient //TODO Persist It
     @JsonProperty("overview")
     private String overview;
 
