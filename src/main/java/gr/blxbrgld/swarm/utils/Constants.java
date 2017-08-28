@@ -8,20 +8,13 @@ import java.util.*;
  */
 public class Constants {
 
-    // Static List Of The Allowed Crew Departments
-    public static final List<String> allowedDepartments;
+    // Static Map Of The Allowed Jobs (Key = Department, Value = List Of Related Jobs)
+    // A Complete Can Be Found Via https://api.themoviedb.org/3/job/list?api_key=api_key
+    public static final Map<String, List<String>> allowedJobs;
     static {
-        List<String> departments = new ArrayList<>();
-        departments.add("Directing"); //TODO Add More Departments
-        allowedDepartments = Collections.unmodifiableList(departments);
-    }
-
-    // Static List Of The Allowed Crew Jobs
-    public static final List<String> allowedJobs;
-    static {
-        List<String> jobs = new ArrayList<>();
-        jobs.add("Director"); //TODO Add More Jobs
-        allowedJobs = Collections.unmodifiableList(jobs);
+        Map<String, List<String>> jobs = new HashMap<>();
+        jobs.put("Directing", Arrays.asList(new String[] { "Director" }));
+        allowedJobs = Collections.unmodifiableMap(jobs);
     }
 
     // View Names

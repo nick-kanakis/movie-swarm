@@ -27,7 +27,8 @@ public class CrewDeserializer extends JsonDeserializer<List<Credit>> {
         if(nodes.isArray()) {
             for(JsonNode node : nodes) {
                 Credit credit = codec.treeToValue(node, Credit.class);
-                if(Constants.allowedDepartments.contains(credit.getDepartment()) && Constants.allowedJobs.contains(credit.getJob())) {
+                List<String> jobs = Constants.allowedJobs.get(credit.getDepartment());
+                if(jobs!=null && jobs.contains(credit.getJob())) {
                     result.add(credit);
                 }
             }
